@@ -60,7 +60,6 @@ agents_client = AgentsClient(endpoint=project_endpoint, credential=DefaultAzureC
 with agents_client:
 
     # Create the healer agent on the Azure AI agent service
-    # Create the healer agent on the Azure AI agent service
     healer_agent = agents_client.create_agent(
         model=model_deployment,
         name=healer_agent_name,
@@ -69,7 +68,6 @@ with agents_client:
 
 
     # Create a connected agent tool for the healer agent
-    # Create the healer agent on the Azure AI agent service
     healer_agent_tool = ConnectedAgentTool(
         id=healer_agent.id, 
         name=healer_agent_name, 
@@ -77,7 +75,6 @@ with agents_client:
     )
 
 
-    # Create the scout agent and connected tool
     # Create the scout agent and connected tool
     scout_agent = agents_client.create_agent(
         model=model_deployment,
@@ -92,7 +89,6 @@ with agents_client:
 
 
     # Create the warrior agent and connected tool
-    # Create the warrior agent and connected tool
     warrior_agent = agents_client.create_agent(
         model=model_deployment,
         name=warrior_agent_name,
@@ -105,7 +101,6 @@ with agents_client:
     )
 
 
-    # Create a main agent with the Connected Agent tools
     # Create a main agent with the Connected Agent tools
     agent = agents_client.create_agent(
         model=model_deployment,
@@ -124,7 +119,6 @@ with agents_client:
 
 
     # Create thread for the chat session
-    # Create thread for the chat session
     print("Creating agent thread.")
     thread = agents_client.threads.create()
 
@@ -134,7 +128,6 @@ with agents_client:
 
 
     # Send a prompt to the agent
-    # Send a prompt to the agent
     message = agents_client.messages.create(
         thread_id=thread.id,
         role=MessageRole.USER,
@@ -142,7 +135,6 @@ with agents_client:
     )
 
 
-    # Create and process Agent run in thread with tools
     # Create and process Agent run in thread with tools
     print("Processing agent thread. Please wait.")
     run = agents_client.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
